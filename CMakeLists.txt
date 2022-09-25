@@ -7,7 +7,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED TRUE)
 
 option(BUILD_SHARED_LIBS "build shared libs" OFF)
 
-add_executable(GLSandbox main.cpp glad.c)
+add_executable(GLSandbox main.cpp)
 
 # find_package(glfw3 3 REQUIRED)
 # find_package(GLEW REQUIRED)
@@ -18,6 +18,7 @@ set(GLFW_BUILD_TESTS OFF CACHE BOOL "" FORCE)
 set(GLFW_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
 
 add_subdirectory(glfw)
+add_subdirectory(glad)
 
 message("OpenGL include dir: ${OPENGL_INCLUDE_DIR}")
 message("glfw include dir: ${GLFW3_INCLUDE_DIR}")
@@ -28,12 +29,12 @@ message("glfw include dir: ${GLFW3_INCLUDE_DIR}")
 
 target_include_directories(GLSandbox PUBLIC 
     ${OPENGL_INCLUDE_DIRS}
-    "${CMAKE_CURRENT_SOURCE_DIR}/include"
+    #"${CMAKE_CURRENT_SOURCE_DIR}/include"
     "${PROJECT_BINARY_DIR}"
     # $<INSTALL_INTERFACE:include>
 )
 
-target_link_libraries(GLSandbox OpenGL::GL glfw)
+target_link_libraries(GLSandbox glad OpenGL::GL glfw)
 # install(TARGETS GLSandbox DESTINATION bin)
 
 
