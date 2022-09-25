@@ -3,3 +3,5 @@
 /glfw/
 
 /.vscode/
+
+.compile_commands.json
